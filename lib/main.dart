@@ -138,6 +138,10 @@ class _HomeState extends State<Home> {
             onPressed: () => _setColorStatusBar(),
             child: Text("Color Status Bar",
                 style: Theme.of(context).textTheme.bodyText1)),
+        ElevatedButton(
+            onPressed: () => _setDefaultColorBars(),
+            child: Text("Color Status Bar",
+                style: Theme.of(context).textTheme.bodyText1)),
       ]),
     );
   }
@@ -161,7 +165,18 @@ Future _setColorNavigationBar() async {
 
 Future _setColorStatusBar() async {
   const style = SystemUiOverlayStyle(
-      statusBarColor: Colors.orange, statusBarIconBrightness: Brightness.light);
+      statusBarColor: Colors.orange, statusBarIconBrightness: Brightness.dark);
+
+  SystemChrome.setSystemUIOverlayStyle(style);
+}
+
+Future _setDefaultColorBars() async {
+  const style = SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarDividerColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarColor: Colors.blueGrey,
+      statusBarIconBrightness: Brightness.light);
 
   SystemChrome.setSystemUIOverlayStyle(style);
 }
