@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Home',
+      title: 'System Staus Bar & Navigation Bar',
       theme: ThemeData(
           fontFamily: "pobbins",
           textTheme: const TextTheme(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   fontSize: 18),
               bodyText1: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontFamily: "pobbins",
                   fontWeight: FontWeight.w500,
                   fontSize: 15))),
