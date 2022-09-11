@@ -129,7 +129,14 @@ class _HomeState extends State<Home> {
                         fontWeight: FontWeight.w500)),
               ),
             ]),
-        
+        ElevatedButton(
+            onPressed: () => _setColorNavigationBar(),
+            child: Text("Color Navigation Bar",
+                style: Theme.of(context).textTheme.bodyText1)),
+        ElevatedButton(
+            onPressed: () => _setColorStatusBar(),
+            child: Text("Color Status Bar",
+                style: Theme.of(context).textTheme.bodyText1)),
       ]),
     );
   }
@@ -140,4 +147,20 @@ _showSnakeBar(BuildContext context, String message) {
     content: Text(message, style: Theme.of(context).textTheme.headline1),
     backgroundColor: Colors.red.shade400,
   ));
+}
+
+Future _setColorNavigationBar() async {
+  const style = SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.orange,
+      systemNavigationBarDividerColor: Colors.orange,
+      systemNavigationBarIconBrightness: Brightness.dark);
+
+  SystemChrome.setSystemUIOverlayStyle(style);
+}
+
+Future _setColorStatusBar() async {
+  const style = SystemUiOverlayStyle(
+      statusBarColor: Colors.orange, statusBarIconBrightness: Brightness.light);
+
+  SystemChrome.setSystemUIOverlayStyle(style);
 }
