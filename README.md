@@ -1,6 +1,8 @@
-# statusbar_navigationbar
+# system statusbar & navigationbar
 
-A new Flutter project.
+Make Fullscreen Flutter App (Hide Status & Navigation bars) by LeanBack, Immersive & Immersive Sticky Modes.
+
+Change the color of your system status & navigation bars.
 
 ## Getting Started
 
