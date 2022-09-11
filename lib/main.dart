@@ -75,16 +75,23 @@ class _HomeState extends State<Home> {
                 case 0:
                   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                       overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+                  _showSnakeBar(context, "exited FullScreen Mode.");
                   break;
                 case 1:
                   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+                  _showSnakeBar(context,
+                      "tapping anywhere on the display to exit fullscreen Mode.");
                   break;
                 case 2:
                   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+                  _showSnakeBar(context,
+                      "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
                   break;
                 case 3:
                   SystemChrome.setEnabledSystemUIMode(
                       SystemUiMode.immersiveSticky);
+                  _showSnakeBar(context,
+                      "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
                   break;
               }
             },
@@ -122,7 +129,15 @@ class _HomeState extends State<Home> {
                         fontWeight: FontWeight.w500)),
               ),
             ]),
+        
       ]),
     );
   }
+}
+
+_showSnakeBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(message, style: Theme.of(context).textTheme.headline1),
+    backgroundColor: Colors.red.shade400,
+  ));
 }
