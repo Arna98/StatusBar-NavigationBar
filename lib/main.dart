@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
   double _elevation = 1;
   bool value = false;
   bool _extendBodyBehindAppBar = true;
+  double _top = 80;
 
   @override
   Widget build(BuildContext context) {
@@ -73,122 +74,127 @@ class _HomeState extends State<Home> {
                 width: double.infinity,
                 height: double.infinity),
           ),
-          Column(children: [
-            Text("Hide Staus Bar & Navigation Bar :",
-                style: Theme.of(context).textTheme.bodyText1),
-            ToggleButtons(
-                isSelected: _selection,
-                color: Colors.black,
-                selectedColor: Colors.white,
-                fillColor: Colors.blue.shade900,
-                renderBorder: false,
-                onPressed: (index) {
-                  setState(() {
-                    for (int myIndex = 0;
-                        myIndex < _selection.length;
-                        myIndex++) {
-                      if (myIndex == index) {
-                        _selection[myIndex] = true;
-                      } else {
-                        _selection[myIndex] = false;
-                      }
-                    }
-                  });
-                  switch (index) {
-                    case 0:
-                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-                          overlays: [
-                            SystemUiOverlay.top,
-                            SystemUiOverlay.bottom
-                          ]);
-                      _showSnakeBar(context, "exited FullScreen Mode.");
-                      break;
-                    case 1:
-                      SystemChrome.setEnabledSystemUIMode(
-                          SystemUiMode.leanBack);
-                      _showSnakeBar(context,
-                          "tapping anywhere on the display to exit fullscreen Mode.");
-                      break;
-                    case 2:
-                      SystemChrome.setEnabledSystemUIMode(
-                          SystemUiMode.immersive);
-                      _showSnakeBar(context,
-                          "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
-                      break;
-                    case 3:
-                      SystemChrome.setEnabledSystemUIMode(
-                          SystemUiMode.immersiveSticky);
-                      _showSnakeBar(context,
-                          "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
-                      break;
-                  }
-                },
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("None",
-                        style: TextStyle(
-                            fontFamily: "pobbins",
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("LeanBack",
-                        style: TextStyle(
-                            fontFamily: "pobbins",
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Immersive",
-                        style: TextStyle(
-                            fontFamily: "pobbins",
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("ImmersiveSticky",
-                        style: TextStyle(
-                            fontFamily: "pobbins",
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500)),
-                  ),
-                ]),
-            ElevatedButton(
-                onPressed: () => _setColorNavigationBar(),
-                child: Text("Color Navigation Bar",
-                    style: Theme.of(context).textTheme.bodyText1)),
-            ElevatedButton(
-                onPressed: () => _setColorStatusBar(),
-                child: Text("Color Status Bar",
-                    style: Theme.of(context).textTheme.bodyText1)),
-            ElevatedButton(
-                onPressed: () => _setDefaultColorBars(),
-                child: Text("Color Status Bar",
-                    style: Theme.of(context).textTheme.bodyText1)),
-            Transform.scale(
-              scale: 2,
-              child: Switch.adaptive(
-                  value: value,
-                  onChanged: (value) {
+          Positioned(
+            top: _top,
+            child: Column(children: [
+              Text("Hide Staus Bar & Navigation Bar :",
+                  style: Theme.of(context).textTheme.bodyText1),
+              ToggleButtons(
+                  isSelected: _selection,
+                  color: Colors.black,
+                  selectedColor: Colors.white,
+                  fillColor: Colors.blue.shade900,
+                  renderBorder: false,
+                  onPressed: (index) {
                     setState(() {
-                      this.value = value;
+                      for (int myIndex = 0;
+                          myIndex < _selection.length;
+                          myIndex++) {
+                        if (myIndex == index) {
+                          _selection[myIndex] = true;
+                        } else {
+                          _selection[myIndex] = false;
+                        }
+                      }
                     });
-                    if (value) {
-                      _elevation = 0;
-                      _statusAppBar = Colors.transparent;
-                      _extendBodyBehindAppBar = true;
-                    } else {
-                      _elevation = 1;
-                      _statusAppBar = Colors.blueAccent;
-                      _extendBodyBehindAppBar = false;
+                    switch (index) {
+                      case 0:
+                        SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                            overlays: [
+                              SystemUiOverlay.top,
+                              SystemUiOverlay.bottom
+                            ]);
+                        _showSnakeBar(context, "exited FullScreen Mode.");
+                        break;
+                      case 1:
+                        SystemChrome.setEnabledSystemUIMode(
+                            SystemUiMode.leanBack);
+                        _showSnakeBar(context,
+                            "tapping anywhere on the display to exit fullscreen Mode.");
+                        break;
+                      case 2:
+                        SystemChrome.setEnabledSystemUIMode(
+                            SystemUiMode.immersive);
+                        _showSnakeBar(context,
+                            "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
+                        break;
+                      case 3:
+                        SystemChrome.setEnabledSystemUIMode(
+                            SystemUiMode.immersiveSticky);
+                        _showSnakeBar(context,
+                            "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
+                        break;
                     }
-                  }),
-            ),
-          ]),
+                  },
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("None",
+                          style: TextStyle(
+                              fontFamily: "pobbins",
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("LeanBack",
+                          style: TextStyle(
+                              fontFamily: "pobbins",
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("Immersive",
+                          style: TextStyle(
+                              fontFamily: "pobbins",
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text("ImmersiveSticky",
+                          style: TextStyle(
+                              fontFamily: "pobbins",
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500)),
+                    ),
+                  ]),
+              ElevatedButton(
+                  onPressed: () => _setColorNavigationBar(),
+                  child: Text("Color Navigation Bar",
+                      style: Theme.of(context).textTheme.bodyText1)),
+              ElevatedButton(
+                  onPressed: () => _setColorStatusBar(),
+                  child: Text("Color Status Bar",
+                      style: Theme.of(context).textTheme.bodyText1)),
+              ElevatedButton(
+                  onPressed: () => _setDefaultColorBars(),
+                  child: Text("Color Status Bar",
+                      style: Theme.of(context).textTheme.bodyText1)),
+              Transform.scale(
+                scale: 2,
+                child: Switch.adaptive(
+                    value: value,
+                    onChanged: (value) {
+                      setState(() {
+                        this.value = value;
+                      });
+                      if (value) {
+                        _elevation = 0;
+                        _statusAppBar = Colors.transparent;
+                        _extendBodyBehindAppBar = true;
+                        _top = 80;
+                      } else {
+                        _elevation = 1;
+                        _statusAppBar = Colors.blueAccent;
+                        _extendBodyBehindAppBar = false;
+                        _top = 0;
+                      }
+                    }),
+              ),
+            ]),
+          ),
         ],
       ),
     );
