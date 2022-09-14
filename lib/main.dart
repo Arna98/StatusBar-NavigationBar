@@ -43,13 +43,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<bool> _selection = [true, false, false, false];
+  Color _statusAppBar = Colors.blueAccent;
+  double _elevation = 1;
+  bool value = false;
+  bool _extendBodyBehindAppBar = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: _extendBodyBehindAppBar,
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
-        elevation: 1,
+        backgroundColor: _statusAppBar,
+        elevation: _elevation,
         leading: const BackButton(),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.search))
@@ -164,6 +169,25 @@ class _HomeState extends State<Home> {
                 onPressed: () => _setDefaultColorBars(),
                 child: Text("Color Status Bar",
                     style: Theme.of(context).textTheme.bodyText1)),
+            Transform.scale(
+              scale: 2,
+              child: Switch.adaptive(
+                  value: value,
+                  onChanged: (value) {
+                    setState(() {
+                      this.value = value;
+                    });
+                    if (value) {
+                      _elevation = 0;
+                      _statusAppBar = Colors.transparent;
+                      _extendBodyBehindAppBar = true;
+                    } else {
+                      _elevation = 1;
+                      _statusAppBar = Colors.blueAccent;
+                      _extendBodyBehindAppBar = false;
+                    }
+                  }),
+            ),
           ]),
         ],
       ),
