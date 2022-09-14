@@ -52,10 +52,10 @@ class _HomeState extends State<Home> {
         elevation: 1,
         leading: const BackButton(),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(CupertinoIcons.search))
+          IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.search))
         ],
         title: Center(
-            child: Text("Stauts Bar & Navigation Bar",
+            child: Text("Stauts & Navigation Bars",
                 style: Theme.of(context).textTheme.headline1)),
       ),
       body: Column(children: [
