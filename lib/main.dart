@@ -172,6 +172,7 @@ class _HomeState extends State<Home> {
                   onPressed: () => _setDefaultColorBars(),
                   child: Text("Color Status Bar",
                       style: Theme.of(context).textTheme.bodyText1)),
+              Text("Trasparent Mdoe :", style: Theme.of(context).textTheme.bodyText1),
               Transform.scale(
                 scale: 2,
                 child: Switch.adaptive(
