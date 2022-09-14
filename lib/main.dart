@@ -49,6 +49,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         elevation: 1,
+        leading: const BackButton(),
         title: Center(
             child: Text("Stauts Bar & Navigation Bar",
                 style: Theme.of(context).textTheme.headline1)),
