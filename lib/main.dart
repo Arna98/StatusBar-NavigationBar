@@ -58,96 +58,115 @@ class _HomeState extends State<Home> {
             child: Text("Stauts & Navigation Bars",
                 style: Theme.of(context).textTheme.headline1)),
       ),
-      body: Column(children: [
-        Text("Hide Staus Bar & Navigation Bar :",
-            style: Theme.of(context).textTheme.bodyText1),
-        ToggleButtons(
-            isSelected: _selection,
-            color: Colors.black,
-            selectedColor: Colors.white,
-            fillColor: Colors.blue.shade900,
-            renderBorder: false,
-            onPressed: (index) {
-              setState(() {
-                for (int myIndex = 0; myIndex < _selection.length; myIndex++) {
-                  if (myIndex == index) {
-                    _selection[myIndex] = true;
-                  } else {
-                    _selection[myIndex] = false;
+      body: Stack(
+        children: [
+          Opacity(
+            opacity: 0.65,
+            child: Image.network(
+                'https://images.unsplash.com/photo-1608306448197-e83633f1261c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: double.infinity),
+          ),
+          Column(children: [
+            Text("Hide Staus Bar & Navigation Bar :",
+                style: Theme.of(context).textTheme.bodyText1),
+            ToggleButtons(
+                isSelected: _selection,
+                color: Colors.black,
+                selectedColor: Colors.white,
+                fillColor: Colors.blue.shade900,
+                renderBorder: false,
+                onPressed: (index) {
+                  setState(() {
+                    for (int myIndex = 0;
+                        myIndex < _selection.length;
+                        myIndex++) {
+                      if (myIndex == index) {
+                        _selection[myIndex] = true;
+                      } else {
+                        _selection[myIndex] = false;
+                      }
+                    }
+                  });
+                  switch (index) {
+                    case 0:
+                      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                          overlays: [
+                            SystemUiOverlay.top,
+                            SystemUiOverlay.bottom
+                          ]);
+                      _showSnakeBar(context, "exited FullScreen Mode.");
+                      break;
+                    case 1:
+                      SystemChrome.setEnabledSystemUIMode(
+                          SystemUiMode.leanBack);
+                      _showSnakeBar(context,
+                          "tapping anywhere on the display to exit fullscreen Mode.");
+                      break;
+                    case 2:
+                      SystemChrome.setEnabledSystemUIMode(
+                          SystemUiMode.immersive);
+                      _showSnakeBar(context,
+                          "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
+                      break;
+                    case 3:
+                      SystemChrome.setEnabledSystemUIMode(
+                          SystemUiMode.immersiveSticky);
+                      _showSnakeBar(context,
+                          "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
+                      break;
                   }
-                }
-              });
-              switch (index) {
-                case 0:
-                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-                      overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-                  _showSnakeBar(context, "exited FullScreen Mode.");
-                  break;
-                case 1:
-                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-                  _showSnakeBar(context,
-                      "tapping anywhere on the display to exit fullscreen Mode.");
-                  break;
-                case 2:
-                  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-                  _showSnakeBar(context,
-                      "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
-                  break;
-                case 3:
-                  SystemChrome.setEnabledSystemUIMode(
-                      SystemUiMode.immersiveSticky);
-                  _showSnakeBar(context,
-                      "through a swipe gesture at the edges of the display to exit fullscreen Mode.");
-                  break;
-              }
-            },
-            children: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("None",
-                    style: TextStyle(
-                        fontFamily: "pobbins",
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("LeanBack",
-                    style: TextStyle(
-                        fontFamily: "pobbins",
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("Immersive",
-                    style: TextStyle(
-                        fontFamily: "pobbins",
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
-              ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text("ImmersiveSticky",
-                    style: TextStyle(
-                        fontFamily: "pobbins",
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
-              ),
-            ]),
-        ElevatedButton(
-            onPressed: () => _setColorNavigationBar(),
-            child: Text("Color Navigation Bar",
-                style: Theme.of(context).textTheme.bodyText1)),
-        ElevatedButton(
-            onPressed: () => _setColorStatusBar(),
-            child: Text("Color Status Bar",
-                style: Theme.of(context).textTheme.bodyText1)),
-        ElevatedButton(
-            onPressed: () => _setDefaultColorBars(),
-            child: Text("Color Status Bar",
-                style: Theme.of(context).textTheme.bodyText1)),
-      ]),
+                },
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("None",
+                        style: TextStyle(
+                            fontFamily: "pobbins",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("LeanBack",
+                        style: TextStyle(
+                            fontFamily: "pobbins",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Immersive",
+                        style: TextStyle(
+                            fontFamily: "pobbins",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("ImmersiveSticky",
+                        style: TextStyle(
+                            fontFamily: "pobbins",
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                ]),
+            ElevatedButton(
+                onPressed: () => _setColorNavigationBar(),
+                child: Text("Color Navigation Bar",
+                    style: Theme.of(context).textTheme.bodyText1)),
+            ElevatedButton(
+                onPressed: () => _setColorStatusBar(),
+                child: Text("Color Status Bar",
+                    style: Theme.of(context).textTheme.bodyText1)),
+            ElevatedButton(
+                onPressed: () => _setDefaultColorBars(),
+                child: Text("Color Status Bar",
+                    style: Theme.of(context).textTheme.bodyText1)),
+          ]),
+        ],
+      ),
     );
   }
 }
