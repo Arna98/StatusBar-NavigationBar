@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'System Staus Bar & Navigation Bar',
+      title: 'System Status Bar & Navigation Bar',
       theme: ThemeData(
           fontFamily: "pobbins",
           textTheme: const TextTheme(
@@ -22,8 +22,13 @@ class MyApp extends StatelessWidget {
                   fontFamily: "pobbins",
                   fontWeight: FontWeight.w700,
                   fontSize: 18),
-              bodyText1: TextStyle(
+              headline2: TextStyle(
                   color: Colors.black,
+                  fontFamily: "pobbins",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15),
+              bodyText1: TextStyle(
+                  color: Colors.white,
                   fontFamily: "pobbins",
                   fontWeight: FontWeight.w500,
                   fontSize: 15))),
@@ -61,7 +66,7 @@ class _HomeState extends State<Home> {
           IconButton(onPressed: () {}, icon: const Icon(CupertinoIcons.search))
         ],
         title: Center(
-            child: Text("Stauts & Navigation Bars",
+            child: Text("Status & Navigation Bars",
                 style: Theme.of(context).textTheme.headline1)),
       ),
       body: Stack(
@@ -77,13 +82,17 @@ class _HomeState extends State<Home> {
           Positioned(
             top: _top,
             child: Column(children: [
-              Text("Hide Staus Bar & Navigation Bar :",
-                  style: Theme.of(context).textTheme.bodyText1),
+              Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: Text("Hide Staus Bar & Navigation Bar :",
+                    style: Theme.of(context).textTheme.headline2),
+              ),
               ToggleButtons(
                   isSelected: _selection,
                   color: Colors.black,
                   selectedColor: Colors.white,
                   fillColor: Colors.blue.shade900,
+                  constraints: const BoxConstraints(maxHeight: 40),
                   renderBorder: false,
                   onPressed: (index) {
                     setState(() {
@@ -160,19 +169,41 @@ class _HomeState extends State<Home> {
                               fontWeight: FontWeight.w500)),
                     ),
                   ]),
-              ElevatedButton(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 32, 0, 16),
+                child: Text("Status and Navigation Bars settings :",
+                    style: Theme.of(context).textTheme.headline2),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: ElevatedButton(
                   onPressed: () => _setColorNavigationBar(),
+                  style:
+                      ElevatedButton.styleFrom(fixedSize: const Size(250, 40)),
                   child: Text("Color Navigation Bar",
-                      style: Theme.of(context).textTheme.bodyText1)),
-              ElevatedButton(
-                  onPressed: () => _setColorStatusBar(),
-                  child: Text("Color Status Bar",
-                      style: Theme.of(context).textTheme.bodyText1)),
-              ElevatedButton(
-                  onPressed: () => _setDefaultColorBars(),
-                  child: Text("Color Status Bar",
-                      style: Theme.of(context).textTheme.bodyText1)),
-              Text("Trasparent Mdoe :", style: Theme.of(context).textTheme.bodyText1),
+                      style: Theme.of(context).textTheme.bodyText1),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: ElevatedButton(
+                    onPressed: () => _setColorStatusBar(),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(250, 40)),
+                    child: Text("Color Status Bar",
+                        style: Theme.of(context).textTheme.bodyText1)),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 32),
+                child: ElevatedButton(
+                    onPressed: () => _setDefaultColorBars(),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(250, 40)),
+                    child: Text("Color Status Bar",
+                        style: Theme.of(context).textTheme.bodyText1)),
+              ),
+              Text("Trasparent Mdoe :",
+                  style: Theme.of(context).textTheme.headline2),
               Transform.scale(
                 scale: 2,
                 child: Switch.adaptive(
